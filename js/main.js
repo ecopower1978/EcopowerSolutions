@@ -1,5 +1,5 @@
 /* ============================================================
-   NEOPOWER ENERGY — Global JavaScript
+   CEOPOWER SOLUTIONS — Global JavaScript
    ============================================================ */
 
 /* ---- Navbar scroll effect ---- */
