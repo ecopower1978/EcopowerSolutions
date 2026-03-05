@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — NeoPower Energy</title>
+  <meta name="description" content="Browse NeoPower Energy's full product range: portable power stations, solar lights, flashlights, drones, and air circuit breakers. B2B wholesale pricing available." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Product detail layout */
+    .product-detail {
+      scroll-margin-top: 90px;
+      margin-bottom: 80px;
+      padding: 48px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px);
+    }
+    .product-detail-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+    .product-detail-visual {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-detail-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(0,212,170,0.12), transparent 70%);
+    }
+    .product-detail-visual svg { width: 120px; height: 120px; color: var(--teal); opacity: 0.5; position: relative; z-index: 1; }
+    .product-detail-visual .img-note {
+      position: absolute;
+      bottom: 12px; left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .product-detail-header { margin-bottom: 24px; }
+    .product-detail-header .product-category { font-size: 0.78rem; }
+    .product-detail-header h2 { font-size: 2rem; margin-bottom: 10px; }
+    .product-detail-header p { color: var(--text-muted); line-height: 1.7; }
+
+    /* Tabs */
+    .tab-buttons { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .tab-btn {
+      padding: 11px 24px;
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: -1px;
+    }
+    .tab-btn.active, .tab-btn:hover { color: var(--teal); border-bottom-color: var(--teal); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Specs */
+    .specs-wrap {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .specs-table td:first-child { background: rgba(0,212,170,0.03); }
+
+    /* Quote form inline */
+    .inline-quote {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .inline-quote h4 { color: var(--text-white); margin-bottom: 6px; font-size: 1.1rem; }
+    .inline-quote > p { font-size: 0.9rem; margin-bottom: 20px; }
+
+    .product-anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+    /* Feature list */
+    .feat-list { list-style: none; }
+    .feat-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .feat-list li:last-child { border-bottom: none; }
+    .feat-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* Product nav sidebar */
+    .product-nav-sticky {
+      position: sticky;
+      top: 90px;
+    }
+    .product-nav-list { display: flex; flex-direction: column; gap: 4px; }
+    .product-nav-list a {
+      padding: 11px 16px;
+      border-radius: 8px;
+      font-family: var(--font-head);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      transition: var(--transition);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .product-nav-list a:hover, .product-nav-list a.active {
+      background: rgba(0,212,170,0.08);
+      color: var(--teal);
+    }
+    .product-nav-list a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .products-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
+
+    @media (max-width: 1024px) {
+      .products-layout { grid-template-columns: 1fr; }
+      .product-nav-sticky { display: none; }
+      .product-detail-inner { grid-template-columns: 1fr; }
+      .product-detail { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <span>NEO<em>POWER</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary nav-cta" data-modal="quote">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Request a Quote
+    </a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container page-hero-content">
+    <div class="section-label animate-in">Product Catalog</div>
+    <h1 class="animate-in" style="max-width:600px;">Our Full <span style="color:var(--teal)">Product Range</span></h1>
+    <p class="animate-in" style="max-width:540px; font-size:1.1rem; margin-top:16px;">All products are available for B2B wholesale with custom OEM/ODM options. Click any product to view full specifications and submit an inquiry.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="section" style="padding-top: 48px;">
+  <div class="container">
+    <div class="products-layout">
+
+      <!-- Sidebar Nav -->
+      <div class="product-nav-sticky">
+        <div style="margin-bottom:12px;">
+          <div class="section-label" style="font-size:0.72rem;">Jump To</div>
+        </div>
+        <nav class="product-nav-list">
+          <a href="#power-station">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            Power Stations
+          </a>
+          <a href="#solar-lights">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            Solar Lights
+          </a>
+          <a href="#flashlights">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Flashlights
+          </a>
+          <a href="#drones">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M6 6l-3-3m15 0l-3 3M6 18l-3 3m15 0l-3-3"/></svg>
+            Drones
+          </a>
+          <a href="#circuit-breakers">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            Circuit Breakers
+          </a>
+        </nav>
+        <div style="margin-top:32px; padding:20px; background:rgba(0,212,170,0.06); border:1px solid var(--border); border-radius: var(--radius);">
+          <p style="font-size:0.85rem; margin-bottom:14px;">Need custom specs or private label?</p>
+          <a href="#" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.82rem; padding:11px 16px;" data-modal="quote">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+
+        <!-- ===== PRODUCT 1: POWER STATION ===== -->
+        <span class="product-anchor" id="power-station"></span>
+        <div class="product-detail animate-in">
+          <div class="product-detail-inner">
+            <div>
+              <div class="product-detail-visual">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <rect x="10" y="22" width="60" height="40" rx="5"/>
+                  <rect x="34" y="16" width="12" height="6" rx="2"/>
+                  <line x1="20" y1="36" x2="20" y2="50"/>
+                  <line x1="30" y1="30" x2="30" y2="56"/>
+                  <line x1="40" y1="33" x2="40" y2="53"/>
+                  <line x1="50" y1="28" x2="50" y2="58"/>
+                  <line x1="60" y1="34" x2="60" y2="52"/>
+                </svg>
+                <div class="img-note">Replace with product photo</div>
+              </div>
+              <div style="margin-top:20px; padding:20px; background:rgba(0,212,170,0.05); border:1px solid var(--border); border-radius:var(--radius);">
+                <div style="font-family:var(--font-head);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;">Key Highlights</div>
+                <ul class="feat-list">
+                  <li>LiFePO₄ battery for 3000+ charge cycles</li>
+                  <li>Pure sine wave AC inverter output</li>
+                  <li>Fast solar charging (0→80% in ~2 hrs)</li>
+                  <li>LCD / touchscreen display</li>
+                  <li>Multiple simultaneous outputs</li>
+                  <li>CE, UN38.3, FCC certified</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="product-detail-header">
+                <div class="product-category">Power Storage</div>
+                <h2>Portable Power Station</h2>
+                <p>Industrial-grade portable power stations using LiFePO₄ (Lithium Iron Phosphate) cells. Ideal for outdoor, emergency, RV, and off-grid applications. Available in 300Wh to 3000Wh capacities with full OEM customization.</p>
+              </div>
+              <div class="tabs">
+                <div class="tab-buttons">
+                  <button class="tab-btn active" data-tab="ps-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="ps-quote">Request Quote</button>
+                </div>
+                <div class="tab-panel active" id="ps-specs">
+                  <div class="specs-wrap">
+                    <table class="specs-table">
+                      <tr><td>Capacity Range</td><td>300Wh / 500Wh / 1000Wh / 2000Wh / 3000Wh</td></tr>
+                      <tr><td>Battery Type</td><td>LiFePO₄ (Lithium Iron Phosphate)</td></tr>
+                      <tr><td>AC Output</td><td>110V/220V AC, Pure Sine Wave, up to 2200W</td></tr>
+                      <tr><td>DC Output</td><td>12V/24V DC, Max 120W</td></tr>
+                      <tr><td>USB-C PD Output</td><td>100W (PD 3.0)</td></tr>
+                      <tr><td>USB-A Output</td><td>5V/2.4A × 4 ports</td></tr>
+                      <tr><td>Solar Input</td><td>Max 400W (MPPT controller built-in)</td></tr>
+                      <tr><td>AC Charging Time</td><td>≈ 1.5–2.5 hrs (1000Wh model)</td></tr>
+                      <tr><td>Cycle Life</td><td>≥ 3000 cycles to 80% capacity</td></tr>
+                      <tr><td>Display</td><td>4-inch LCD with watt/hour meter</td></tr>
+                      <tr><td>Operating Temp</td><td>-20°C to +45°C</td></tr>
+                      <tr><td>Weight</td><td>9.8 kg (1000Wh model)</td></tr>
+                      <tr><td>Certifications</td><td>CE, RoHS, UN38.3, FCC, PSE</td></tr>
+                      <tr><td>MOQ</td><td>50 units per SKU</td></tr>
+                      <tr><td>Lead Time</td><td>15–20 working days</td></tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-panel" id="ps-quote">
+                  <div class="inline-quote">
+                    <h4>Inquire: Portable Power Station</h4>
+                    <p>Provide your requirements and we'll respond within 24 hours with pricing.</p>
+                    <form data-ajax data-success="Inquiry sent! We'll get back to you within 24 hours.">
+                      <input type="hidden" name="product" value="Portable Power Station" />
+                      <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required /></div>
+                        <div class="form-group"><label>Email *</label><input type="email" placeholder="you@company.com" required /></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group"><label>Capacity Required</label>
+                          <select><option>300Wh</option><option>500Wh</option><option selected>1000Wh</option><option>2000Wh</option><option>3000Wh</option><option>Custom</option></select>
+                        </div>
+                        <div class="form-group"><label>Quantity (units)</label><input type="text" placeholder="e.g. 200 units" /></div>
+                      </div>
+                      <div class="form-group"><label>OEM Requirements</label><textarea placeholder="Branding, custom specs, packaging requirements..." rows="3"></textarea></div>
+                      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Inquiry</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCT 2: SOLAR LIGHTS ===== -->
+        <span class="product-anchor" id="solar-lights"></span>
+        <div class="product-detail animate-in">
+          <div class="product-detail-inner">
+            <div>
+              <div class="product-detail-visual">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <polygon points="40,10 55,25 50,25 50,55 30,55 30,25 25,25"/>
+                  <circle cx="40" cy="67" r="6"/>
+                  <line x1="40" y1="55" x2="40" y2="61"/>
+                </svg>
+                <div class="img-note">Replace with product photo</div>
+              </div>
+              <div style="margin-top:20px; padding:20px; background:rgba(0,212,170,0.05); border:1px solid var(--border); border-radius:var(--radius);">
+                <div style="font-family:var(--font-head);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;">Key Highlights</div>
+                <ul class="feat-list">
+                  <li>All-in-one solar panel integration</li>
+                  <li>Passive infrared (PIR) motion sensor</li>
+                  <li>Dusk-to-dawn auto on/off</li>
+                  <li>IP65/IP67 weatherproof housing</li>
+                  <li>3–5 year warranty available</li>
+                  <li>CE, RoHS, SAA, ETL certified</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="product-detail-header">
+                <div class="product-category">Solar Lighting</div>
+                <h2>Solar Garden &amp; Street Lights</h2>
+                <p>High-efficiency all-in-one solar LED lights for residential gardens, commercial parking lots, and public street lighting. No wiring required — fully self-powered with intelligent charge management.</p>
+              </div>
+              <div class="tabs">
+                <div class="tab-buttons">
+                  <button class="tab-btn active" data-tab="sl-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="sl-quote">Request Quote</button>
+                </div>
+                <div class="tab-panel active" id="sl-specs">
+                  <div class="specs-wrap">
+                    <table class="specs-table">
+                      <tr><td>Power Range</td><td>10W / 30W / 50W / 100W / 150W / 200W</td></tr>
+                      <tr><td>LED Type</td><td>High-efficiency SMD LED (≥ 150 lm/W)</td></tr>
+                      <tr><td>Solar Panel</td><td>Monocrystalline silicon, 18–20% efficiency</td></tr>
+                      <tr><td>Battery</td><td>LiFePO₄, built-in, 1500+ cycle life</td></tr>
+                      <tr><td>Light Output</td><td>1500 lm – 30,000 lm (model dependent)</td></tr>
+                      <tr><td>Color Temperature</td><td>3000K / 4000K / 6000K (customizable)</td></tr>
+                      <tr><td>Motion Sensor</td><td>PIR, adjustable 3–8m range, 120° arc</td></tr>
+                      <tr><td>Waterproof Rating</td><td>IP65 (garden) / IP67 (street)</td></tr>
+                      <tr><td>Operating Temp</td><td>-20°C to +60°C</td></tr>
+                      <tr><td>Charging Time</td><td>6–8 hrs (full sun)</td></tr>
+                      <tr><td>Backup Time</td><td>2–4 nights (no sun)</td></tr>
+                      <tr><td>Housing</td><td>Die-cast aluminum + tempered glass</td></tr>
+                      <tr><td>Certifications</td><td>CE, RoHS, SAA, ETL, LM79/LM80</td></tr>
+                      <tr><td>MOQ</td><td>100 units per model</td></tr>
+                      <tr><td>Lead Time</td><td>20–25 working days</td></tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-panel" id="sl-quote">
+                  <div class="inline-quote">
+                    <h4>Inquire: Solar Lights</h4>
+                    <p>Tell us your project requirements for a tailored quotation.</p>
+                    <form data-ajax data-success="Inquiry sent! We'll get back to you within 24 hours.">
+                      <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required /></div>
+                        <div class="form-group"><label>Email *</label><input type="email" placeholder="you@company.com" required /></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group"><label>Wattage Required</label>
+                          <select><option>10W</option><option>30W</option><option>50W</option><option>100W</option><option>150W</option><option>200W</option><option>Custom</option></select>
+                        </div>
+                        <div class="form-group"><label>Quantity</label><input type="text" placeholder="e.g. 500 units" /></div>
+                      </div>
+                      <div class="form-group"><label>Application / Project</label><textarea placeholder="Street lighting, parking lot, residential, garden..."></textarea></div>
+                      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Inquiry</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCT 3: FLASHLIGHTS ===== -->
+        <span class="product-anchor" id="flashlights"></span>
+        <div class="product-detail animate-in">
+          <div class="product-detail-inner">
+            <div>
+              <div class="product-detail-visual">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <circle cx="40" cy="30" r="12"/>
+                  <polygon points="30,42 50,42 56,70 24,70"/>
+                  <rect x="35" y="70" width="10" height="6" rx="2"/>
+                  <line x1="40" y1="6" x2="40" y2="18"/>
+                </svg>
+                <div class="img-note">Replace with product photo</div>
+              </div>
+              <div style="margin-top:20px; padding:20px; background:rgba(0,212,170,0.05); border:1px solid var(--border); border-radius:var(--radius);">
+                <div style="font-family:var(--font-head);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;">Key Highlights</div>
+                <ul class="feat-list">
+                  <li>Aircraft-grade aluminum alloy body</li>
+                  <li>CREE / XHP high-lumen LED</li>
+                  <li>USB-C / micro-USB direct charging</li>
+                  <li>Multi-mode: High / Medium / Low / Strobe / SOS</li>
+                  <li>IP68 fully submersible</li>
+                  <li>CE, RoHS, FCC certified</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="product-detail-header">
+                <div class="product-category">Outdoor Lighting</div>
+                <h2>Outdoor Tactical Flashlights</h2>
+                <p>Professional rechargeable flashlights for outdoor, tactical, camping, and industrial use. Machined from aerospace-grade aluminum with military-spec anodizing. Available in pocket EDC to high-power searchlight models.</p>
+              </div>
+              <div class="tabs">
+                <div class="tab-buttons">
+                  <button class="tab-btn active" data-tab="fl-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="fl-quote">Request Quote</button>
+                </div>
+                <div class="tab-panel active" id="fl-specs">
+                  <div class="specs-wrap">
+                    <table class="specs-table">
+                      <tr><td>Lumen Output</td><td>500 lm / 2000 lm / 5000 lm / 10,000 lm</td></tr>
+                      <tr><td>LED Source</td><td>CREE XHP50.2 / XHP70.2 / Custom</td></tr>
+                      <tr><td>Modes</td><td>5: Turbo / High / Medium / Low / Strobe / SOS</td></tr>
+                      <tr><td>Battery</td><td>18650 / 21700 Li-ion (included or OEM)</td></tr>
+                      <tr><td>Battery Life (High)</td><td>1.5 – 6 hrs (model dependent)</td></tr>
+                      <tr><td>Charging</td><td>USB-C PD 18W (0→100% in 2.5 hrs)</td></tr>
+                      <tr><td>Beam Distance</td><td>150 m – 1200 m</td></tr>
+                      <tr><td>Waterproof</td><td>IP68 (submersible to 2m)</td></tr>
+                      <tr><td>Drop Resistance</td><td>MIL-STD-810G (1.5m drop)</td></tr>
+                      <tr><td>Body Material</td><td>6061 Aerospace Aluminum, Type-III Anodize</td></tr>
+                      <tr><td>Length / Weight</td><td>125–220 mm / 100–350 g</td></tr>
+                      <tr><td>Certifications</td><td>CE, RoHS, FCC, UN38.3</td></tr>
+                      <tr><td>Custom Branding</td><td>Laser engraving / color anodizing available</td></tr>
+                      <tr><td>MOQ</td><td>200 units per model</td></tr>
+                      <tr><td>Lead Time</td><td>15–20 working days</td></tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-panel" id="fl-quote">
+                  <div class="inline-quote">
+                    <h4>Inquire: Outdoor Flashlights</h4>
+                    <p>Tell us your requirements for a tailored quote.</p>
+                    <form data-ajax data-success="Inquiry sent! We'll get back to you within 24 hours.">
+                      <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required /></div>
+                        <div class="form-group"><label>Email *</label><input type="email" placeholder="you@company.com" required /></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group"><label>Lumen Range</label>
+                          <select><option>500 lm (EDC)</option><option>2000 lm (Standard)</option><option>5000 lm (Pro)</option><option>10000 lm (Searchlight)</option></select>
+                        </div>
+                        <div class="form-group"><label>Quantity</label><input type="text" placeholder="e.g. 1000 units" /></div>
+                      </div>
+                      <div class="form-group"><label>Custom Branding / Notes</label><textarea placeholder="Logo engraving, box design, color options..."></textarea></div>
+                      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Inquiry</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCT 4: DRONES ===== -->
+        <span class="product-anchor" id="drones"></span>
+        <div class="product-detail animate-in">
+          <div class="product-detail-inner">
+            <div>
+              <div class="product-detail-visual">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <rect x="30" y="32" width="20" height="16" rx="3"/>
+                  <line x1="10" y1="20" x2="30" y2="36"/>
+                  <line x1="70" y1="20" x2="50" y2="36"/>
+                  <line x1="10" y1="60" x2="30" y2="44"/>
+                  <line x1="70" y1="60" x2="50" y2="44"/>
+                  <circle cx="10" cy="20" r="6"/>
+                  <circle cx="70" cy="20" r="6"/>
+                  <circle cx="10" cy="60" r="6"/>
+                  <circle cx="70" cy="60" r="6"/>
+                  <circle cx="40" cy="40" r="4" fill="currentColor" opacity=".2"/>
+                </svg>
+                <div class="img-note">Replace with product photo</div>
+              </div>
+              <div style="margin-top:20px; padding:20px; background:rgba(0,212,170,0.05); border:1px solid var(--border); border-radius:var(--radius);">
+                <div style="font-family:var(--font-head);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;">Key Highlights</div>
+                <ul class="feat-list">
+                  <li>3-axis gimbal stabilization</li>
+                  <li>4K / 8K camera options</li>
+                  <li>Obstacle avoidance sensors</li>
+                  <li>Return-to-home auto-land</li>
+                  <li>Long-range 2.4GHz / 5.8GHz RC</li>
+                  <li>CE, FCC, SRRC certified</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="product-detail-header">
+                <div class="product-category">UAV / Drone</div>
+                <h2>Commercial &amp; Consumer Drones</h2>
+                <p>Professional-grade quadcopters and hexacopters for photography, agriculture, inspection, and delivery. Consumer-grade models also available for retail channels. GPS-stabilized, foldable, and fully OEM-customizable.</p>
+              </div>
+              <div class="tabs">
+                <div class="tab-buttons">
+                  <button class="tab-btn active" data-tab="dr-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="dr-quote">Request Quote</button>
+                </div>
+                <div class="tab-panel active" id="dr-specs">
+                  <div class="specs-wrap">
+                    <table class="specs-table">
+                      <tr><td>Type</td><td>Consumer / Prosumer / Agricultural / Industrial</td></tr>
+                      <tr><td>Camera</td><td>4K 30fps / 4K 60fps / 8K (model dependent)</td></tr>
+                      <tr><td>Gimbal</td><td>3-axis mechanical stabilization, ±0.01° accuracy</td></tr>
+                      <tr><td>Max Flight Time</td><td>28–35 min (no payload)</td></tr>
+                      <tr><td>Max Speed</td><td>72 km/h (S mode)</td></tr>
+                      <tr><td>Max Range</td><td>10 km (RC link, obstacle-free)</td></tr>
+                      <tr><td>GPS Accuracy</td><td>Horizontal: ±0.3m, Vertical: ±0.1m</td></tr>
+                      <tr><td>Obstacle Avoidance</td><td>6-direction infrared + vision</td></tr>
+                      <tr><td>Folded Size</td><td>180×97×77 mm (consumer model)</td></tr>
+                      <tr><td>Weight</td><td>250 g – 6.2 kg (model dependent)</td></tr>
+                      <tr><td>Battery</td><td>4S/6S LiPo smart battery, 5000–20000 mAh</td></tr>
+                      <tr><td>Wind Resistance</td><td>Level 5 (10.7 m/s)</td></tr>
+                      <tr><td>Transmission</td><td>2.4GHz + 5.8GHz dual-band auto-switch</td></tr>
+                      <tr><td>Certifications</td><td>CE, FCC, SRRC, RoHS</td></tr>
+                      <tr><td>MOQ</td><td>20 units (consumer) / 5 units (industrial)</td></tr>
+                      <tr><td>Lead Time</td><td>20–30 working days</td></tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-panel" id="dr-quote">
+                  <div class="inline-quote">
+                    <h4>Inquire: Drones</h4>
+                    <p>Tell us your application and we'll match the right model.</p>
+                    <form data-ajax data-success="Inquiry sent! We'll get back to you within 24 hours.">
+                      <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required /></div>
+                        <div class="form-group"><label>Email *</label><input type="email" placeholder="you@company.com" required /></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group"><label>Drone Category</label>
+                          <select><option>Consumer / Retail</option><option>Professional Photography</option><option>Agricultural Spraying</option><option>Industrial Inspection</option></select>
+                        </div>
+                        <div class="form-group"><label>Quantity</label><input type="text" placeholder="e.g. 50 units" /></div>
+                      </div>
+                      <div class="form-group"><label>Application Description</label><textarea placeholder="Describe your use case and any specific requirements..."></textarea></div>
+                      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Inquiry</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCT 5: CIRCUIT BREAKERS ===== -->
+        <span class="product-anchor" id="circuit-breakers"></span>
+        <div class="product-detail animate-in">
+          <div class="product-detail-inner">
+            <div>
+              <div class="product-detail-visual">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <rect x="22" y="15" width="36" height="50" rx="4"/>
+                  <rect x="28" y="22" width="24" height="12" rx="2"/>
+                  <line x1="32" y1="44" x2="32" y2="54"/>
+                  <line x1="40" y1="44" x2="40" y2="54"/>
+                  <line x1="48" y1="44" x2="48" y2="54"/>
+                  <line x1="28" y1="39" x2="52" y2="39"/>
+                  <line x1="28" y1="44" x2="52" y2="44"/>
+                </svg>
+                <div class="img-note">Replace with product photo</div>
+              </div>
+              <div style="margin-top:20px; padding:20px; background:rgba(0,212,170,0.05); border:1px solid var(--border); border-radius:var(--radius);">
+                <div style="font-family:var(--font-head);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;">Key Highlights</div>
+                <ul class="feat-list">
+                  <li>IEC 60947-2 &amp; GB/T 14048.2 compliant</li>
+                  <li>Electronically adjustable protection</li>
+                  <li>Motorized / remote operation option</li>
+                  <li>Drawout or fixed installation type</li>
+                  <li>Arc extinguishing chamber design</li>
+                  <li>CE, CCC, TÜV certified</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="product-detail-header">
+                <div class="product-category">Electrical Equipment</div>
+                <h2>Air Circuit Breakers (ACB)</h2>
+                <p>Low-voltage air circuit breakers for industrial power distribution systems, switchgear panels, and building electrical infrastructure. Rated from 630A to 6300A with electronic trip unit for precise protection.</p>
+              </div>
+              <div class="tabs">
+                <div class="tab-buttons">
+                  <button class="tab-btn active" data-tab="cb-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="cb-quote">Request Quote</button>
+                </div>
+                <div class="tab-panel active" id="cb-specs">
+                  <div class="specs-wrap">
+                    <table class="specs-table">
+                      <tr><td>Rated Current</td><td>630A / 800A / 1000A / 1600A / 3200A / 6300A</td></tr>
+                      <tr><td>Rated Voltage</td><td>AC 380V / 400V / 660V (50/60 Hz)</td></tr>
+                      <tr><td>Poles</td><td>1P / 2P / 3P / 4P</td></tr>
+                      <tr><td>Breaking Capacity (Icu)</td><td>42 kA – 100 kA @ 380V</td></tr>
+                      <tr><td>Trip Unit</td><td>Intelligent electronic trip unit (ETU)</td></tr>
+                      <tr><td>Protection Functions</td><td>Overload / Short-circuit / Earth fault / Zone selective</td></tr>
+                      <tr><td>Installation Type</td><td>Fixed / Withdrawable (drawout)</td></tr>
+                      <tr><td>Operation</td><td>Manual / Motorized / Remote-controlled</td></tr>
+                      <tr><td>Auxiliary Contacts</td><td>6 NO+6 NC configurable</td></tr>
+                      <tr><td>Communication</td><td>Modbus RTU / Profibus DP optional</td></tr>
+                      <tr><td>Operating Temp</td><td>-5°C to +40°C</td></tr>
+                      <tr><td>Standards</td><td>IEC 60947-2, GB/T 14048.2</td></tr>
+                      <tr><td>Certifications</td><td>CE, CCC, TÜV, RoHS</td></tr>
+                      <tr><td>MOQ</td><td>10 units per model</td></tr>
+                      <tr><td>Lead Time</td><td>25–35 working days</td></tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-panel" id="cb-quote">
+                  <div class="inline-quote">
+                    <h4>Inquire: Air Circuit Breakers</h4>
+                    <p>Provide your electrical system requirements for an accurate quote.</p>
+                    <form data-ajax data-success="Inquiry sent! We'll get back to you within 24 hours.">
+                      <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" placeholder="Your name" required /></div>
+                        <div class="form-group"><label>Email *</label><input type="email" placeholder="you@company.com" required /></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group"><label>Rated Current</label>
+                          <select><option>630A</option><option>800A</option><option>1000A</option><option>1600A</option><option>3200A</option><option>6300A</option></select>
+                        </div>
+                        <div class="form-group"><label>Quantity</label><input type="text" placeholder="e.g. 20 units" /></div>
+                      </div>
+                      <div class="form-group"><label>Technical Requirements</label><textarea placeholder="Voltage, poles, installation type, communication protocol..."></textarea></div>
+                      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Inquiry</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /products col -->
+    </div><!-- /products-layout -->
+  </div><!-- /container -->
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <span>NEO<em>POWER</em></span>
+        </a>
+        <p>Leading B2B wholesale manufacturer of new-energy products. Factory direct, globally certified, and export-ready.</p>
+      </div>
+      <div class="footer-col"><h5>Products</h5><ul>
+        <li><a href="#power-station">Power Stations</a></li>
+        <li><a href="#solar-lights">Solar Lights</a></li>
+        <li><a href="#flashlights">Flashlights</a></li>
+        <li><a href="#drones">Drones</a></li>
+        <li><a href="#circuit-breakers">Circuit Breakers</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#certifications">Certifications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>sales@neopowerenergy.com</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.45 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+86 755 1234 5678</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color:var(--text-dim);">© 2025 NeoPower Energy Co., Ltd. All rights reserved.</p>
+      <p style="color:var(--text-dim);">CE · RoHS · FCC · ISO 9001 Certified</p>
+    </div>
+  </div>
+</footer>
+
+<!-- QUOTE MODAL -->
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="section-label" style="margin-bottom:12px;">B2B Inquiry</div>
+    <h3>Request a Quote</h3>
+    <p>Fill in your requirements and our sales team will respond within 24 hours.</p>
+    <form data-ajax data-success="Quote request sent! We'll contact you within 24 hours.">
+      <div class="form-row">
+        <div class="form-group"><label>Full Name *</label><input type="text" placeholder="John Smith" required /></div>
+        <div class="form-group"><label>Company Name *</label><input type="text" placeholder="Your Company Ltd." required /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address *</label><input type="email" placeholder="john@company.com" required /></div>
+        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 555 000 0000" /></div>
+      </div>
+      <div class="form-group"><label>Product of Interest</label>
+        <select id="modalProduct"><option value="">— Select Product —</option><option>Portable Power Station</option><option>Solar Lights</option><option>Outdoor Flashlights</option><option>Commercial Drones</option><option>Air Circuit Breakers</option><option>Multiple Products</option></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Estimated Quantity</label><input type="text" placeholder="e.g. 500 units" /></div>
+        <div class="form-group"><label>Destination Country</label><input type="text" placeholder="e.g. United States" /></div>
+      </div>
+      <div class="form-group"><label>Additional Requirements</label><textarea placeholder="Describe your requirements..." rows="3"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">Submit Inquiry</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

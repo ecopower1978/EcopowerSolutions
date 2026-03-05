@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — NeoPower Energy</title>
+  <meta name="description" content="Contact NeoPower Energy for B2B wholesale inquiries, OEM/ODM services, and product samples. Based in Shenzhen, China." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Contact form layout */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
+
+    /* Map placeholder */
+    .map-placeholder {
+      height: 260px;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-dim);
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .map-placeholder svg { width: 40px; height: 40px; color: var(--teal); opacity: 0.4; position: relative; z-index: 1; }
+    .map-placeholder p { position: relative; z-index: 1; }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-q {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q svg {
+      width: 18px; height: 18px;
+      color: var(--teal);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-a p {
+      font-size: 0.95rem;
+      padding-top: 12px;
+    }
+    .faq-item.open .faq-a { max-height: 200px; }
+
+    /* Social icons */
+    .social-links { display: flex; gap: 12px; margin-top: 24px; }
+    .social-link {
+      width: 42px; height: 42px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .social-link:hover { background: rgba(0,212,170,0.1); border-color: rgba(0,212,170,0.4); color: var(--teal); }
+    .social-link svg { width: 18px; height: 18px; }
+
+    /* Contact form card */
+    .contact-form-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .contact-form-card { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <span>NEO<em>POWER</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="#contact-form" class="btn btn-primary nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Send Inquiry
+    </a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container page-hero-content">
+    <div class="section-label animate-in">Get In Touch</div>
+    <h1 class="animate-in" style="max-width:600px;">Let's <span style="color:var(--teal)">Work Together</span></h1>
+    <p class="animate-in" style="max-width:520px; font-size:1.1rem; margin-top:16px;">Our international sales team is ready to assist with product inquiries, samples, OEM/ODM projects, and wholesale pricing. We respond to all B2B inquiries within 24 hours.</p>
+  </div>
+</section>
+
+<!-- CONTACT MAIN -->
+<section class="section" style="padding-top:56px;">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Left: Company Info -->
+      <div class="animate-in">
+        <div class="section-label">Contact Information</div>
+        <h3 class="section-title" style="font-size:1.8rem; margin-bottom:32px;">NeoPower Energy Co., Ltd.</h3>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Factory &amp; Head Office</h4>
+            <p>Building A, Longhua Innovation Park<br/>Longhua District, Shenzhen 518109<br/>Guangdong Province, China</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.45 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Phone &amp; WhatsApp</h4>
+            <p>+86 755 1234 5678<br/>WhatsApp: +86 138 0000 0000</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>Email Addresses</h4>
+            <p>Sales: <a href="mailto:sales@neopowerenergy.com" style="color:var(--teal);">sales@neopowerenergy.com</a><br/>
+               OEM/ODM: <a href="mailto:oem@neopowerenergy.com" style="color:var(--teal);">oem@neopowerenergy.com</a><br/>
+               Support: <a href="mailto:support@neopowerenergy.com" style="color:var(--teal);">support@neopowerenergy.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Business Hours</h4>
+            <p>Monday – Friday: 9:00 AM – 6:00 PM (CST, UTC+8)<br/>
+               Saturday: 9:00 AM – 12:00 PM<br/>
+               <span style="color:var(--teal);">24h WhatsApp response for urgent inquiries</span></p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <h4>Trade Platforms</h4>
+            <p>Alibaba: <a href="#" style="color:var(--teal);">neopowerenergy.en.alibaba.com</a><br/>
+               Global Sources: <a href="#" style="color:var(--teal);">neopowerenergy</a><br/>
+               Made-in-China: <a href="#" style="color:var(--teal);">neopowerenergy</a></p>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="map-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p>📍 Longhua District, Shenzhen, China<br/><span style="font-size:0.75rem;font-weight:400;font-family:var(--font-body);color:var(--text-dim);">Embed a Google Maps iframe here by replacing this div</span></p>
+        </div>
+
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="animate-in" id="contact-form">
+        <div class="contact-form-card">
+          <div class="section-label" style="margin-bottom:12px;">Send a Message</div>
+          <h3 style="margin-bottom:8px;">Start Your B2B Inquiry</h3>
+          <p style="margin-bottom:28px;">Fill in the form below and a dedicated sales representative will contact you within 24 hours.</p>
+
+          <form data-ajax data-success="Thank you! Your inquiry has been sent. We'll be in touch within 24 hours.">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Full Name *</label>
+                <input type="text" id="contactName" placeholder="John Smith" required />
+              </div>
+              <div class="form-group">
+                <label for="contactCompany">Company Name *</label>
+                <input type="text" id="contactCompany" placeholder="Your Company Ltd." required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactEmail">Email Address *</label>
+                <input type="email" id="contactEmail" placeholder="john@company.com" required />
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Phone / WhatsApp *</label>
+                <input type="tel" id="contactPhone" placeholder="+1 555 000 0000" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactCountry">Country / Region</label>
+                <input type="text" id="contactCountry" placeholder="e.g. Germany" />
+              </div>
+              <div class="form-group">
+                <label for="contactRole">Your Role</label>
+                <select id="contactRole">
+                  <option value="">— Select —</option>
+                  <option>Importer / Distributor</option>
+                  <option>Retailer / E-commerce</option>
+                  <option>OEM / Brand Owner</option>
+                  <option>Project / Government</option>
+                  <option>Wholesaler</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactProducts">Products of Interest</label>
+              <select id="contactProducts">
+                <option value="">— Select Product Category —</option>
+                <option>Portable Power Station</option>
+                <option>Solar Garden / Street Lights</option>
+                <option>Outdoor Tactical Flashlights</option>
+                <option>Commercial Drones / UAV</option>
+                <option>Air Circuit Breakers</option>
+                <option>Multiple Product Lines</option>
+                <option>OEM / Private Label Services</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactQty">Estimated Order Quantity</label>
+                <input type="text" id="contactQty" placeholder="e.g. 500 units / month" />
+              </div>
+              <div class="form-group">
+                <label for="contactTimeline">Purchase Timeline</label>
+                <select id="contactTimeline">
+                  <option value="">— Select —</option>
+                  <option>Immediate (within 1 month)</option>
+                  <option>Short term (1–3 months)</option>
+                  <option>Medium term (3–6 months)</option>
+                  <option>Planning phase (6+ months)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMsg">Message / Requirements *</label>
+              <textarea id="contactMsg" placeholder="Please describe your requirements in detail — product specifications, quantity, target price, OEM/ODM needs, certifications required, delivery destination, etc." rows="6" required></textarea>
+            </div>
+
+            <div class="form-group" style="display:flex; align-items:flex-start; gap:12px;">
+              <input type="checkbox" id="contactConsent" style="width:auto; margin-top:3px;" required />
+              <label for="contactConsent" style="text-transform:none; letter-spacing:0; font-size:0.88rem; font-weight:400; color:var(--text-muted);">
+                I agree to be contacted by NeoPower Energy regarding my inquiry. Your information will not be shared with third parties.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Inquiry
+            </button>
+
+            <p style="font-size:0.82rem; color:var(--text-dim); margin-top:14px; text-align:center;">
+              ✅ We respond to all inquiries within <strong style="color:var(--text-muted)">24 business hours</strong>
+            </p>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--navy-mid); border-top:1px solid var(--border); padding-bottom:80px;">
+  <div class="container">
+    <div style="max-width:720px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div class="section-label animate-in" style="justify-content:center;">FAQ</div>
+        <h2 class="section-title animate-in">Frequently Asked Questions</h2>
+      </div>
+      <div class="animate-in">
+        <div class="faq-item open">
+          <div class="faq-q">What is your minimum order quantity (MOQ)?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>MOQ varies by product line: Power Stations: 50 units; Solar Lights: 100 units; Flashlights: 200 units; Drones: 20 units (consumer) / 5 units (industrial); Circuit Breakers: 10 units. OEM/ODM projects may require higher MOQs — contact us for details.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you offer OEM / private label services?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>Yes, OEM and ODM services are available for all product lines. We can customize logos, colors, packaging, product specifications, firmware, and more. A dedicated OEM project manager will be assigned to your account.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What certifications do your products carry?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>Our products carry CE, RoHS, FCC, UN38.3, and ISO 9001 certifications as standard. Additional certifications (SAA for Australia, PSE for Japan, UKCA for UK) can be arranged. Certificate documents are available upon request.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do you handle shipping and customs?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>We support all major shipping terms: EXW, FOB Shenzhen, CIF, and DDP. We work with trusted freight forwarders for sea, air, and express shipping. Full export documentation — commercial invoice, packing list, certificate of origin — is provided for every shipment.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can we get product samples before placing a bulk order?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>Yes. Standard product samples can be ordered at cost (sample fee refundable on first bulk order). Sample delivery takes 5–7 business days via express courier. Custom OEM samples take 10–15 business days.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What payment terms do you accept?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>Standard payment terms are 30% T/T deposit with balance before shipment. For established clients, we offer Net 30 and L/C at sight. We accept T/T bank transfer, PayPal (samples only), and trade assurance via Alibaba.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <span>NEO<em>POWER</em></span>
+        </a>
+        <p>Leading B2B wholesale manufacturer of new-energy products. Factory direct, globally certified, and export-ready.</p>
+      </div>
+      <div class="footer-col"><h5>Products</h5><ul>
+        <li><a href="products.html#power-station">Power Stations</a></li>
+        <li><a href="products.html#solar-lights">Solar Lights</a></li>
+        <li><a href="products.html#flashlights">Flashlights</a></li>
+        <li><a href="products.html#drones">Drones</a></li>
+        <li><a href="products.html#circuit-breakers">Circuit Breakers</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#certifications">Certifications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>sales@neopowerenergy.com</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.45 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+86 755 1234 5678</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Longhua District, Shenzhen, China</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color:var(--text-dim);">© 2025 NeoPower Energy Co., Ltd. All rights reserved.</p>
+      <p style="color:var(--text-dim);">CE · RoHS · FCC · ISO 9001 Certified</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

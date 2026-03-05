@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — NeoPower Energy</title>
+  <meta name="description" content="Learn about NeoPower Energy — a 12-year-old B2B clean energy manufacturer in Shenzhen, China. CE, RoHS, ISO 9001 certified." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 8px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--teal), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px; top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid var(--navy);
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+    .timeline-year {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .timeline-item h4 { color: var(--text-white); margin-bottom: 4px; font-size: 1rem; }
+    .timeline-item p { font-size: 0.9rem; }
+
+    /* Values */
+    .value-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: rgba(0,212,170,0.4); transform: translateY(-4px); }
+    .value-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .value-icon svg { width: 24px; height: 24px; color: var(--teal); }
+    .value-card h4 { color: var(--text-white); margin-bottom: 10px; }
+
+    /* Team */
+    .team-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .team-card:hover { border-color: rgba(0,212,170,0.35); transform: translateY(-3px); }
+    .team-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+      border: 2px solid rgba(0,212,170,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .team-avatar svg { width: 36px; height: 36px; color: var(--teal); opacity: 0.6; }
+    .team-card h4 { color: var(--text-white); margin-bottom: 4px; }
+    .team-role { color: var(--teal); font-family: var(--font-head); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .team-card p { font-size: 0.9rem; }
+
+    /* Cert display */
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    @media (max-width: 768px) {
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .cert-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <span>NEO<em>POWER</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary nav-cta" data-modal="quote">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Request a Quote
+    </a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="container page-hero-content">
+    <div class="section-label animate-in">Our Story</div>
+    <h1 class="animate-in" style="max-width:640px;">Manufacturing <span style="color:var(--teal)">Clean Energy</span> for the World</h1>
+    <p class="animate-in" style="max-width:520px; font-size:1.1rem; margin-top:16px;">Founded in 2012 in Shenzhen, China — we've grown from a small electronics workshop to a globally recognized B2B energy product manufacturer serving clients in 50+ countries.</p>
+  </div>
+</section>
+
+<!-- OVERVIEW STATS -->
+<section class="section-sm" style="background:var(--navy-mid); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="grid-4">
+      <div style="text-align:center;" class="animate-in">
+        <div style="font-family:var(--font-head); font-size:3rem; font-weight:700; color:var(--teal); line-height:1;"><span data-counter="12" data-suffix="">0</span>+</div>
+        <div style="color:var(--text-muted); margin-top:8px;">Years in Business</div>
+      </div>
+      <div style="text-align:center;" class="animate-in">
+        <div style="font-family:var(--font-head); font-size:3rem; font-weight:700; color:var(--teal); line-height:1;"><span data-counter="500" data-suffix="">0</span>+</div>
+        <div style="color:var(--text-muted); margin-top:8px;">Global B2B Clients</div>
+      </div>
+      <div style="text-align:center;" class="animate-in">
+        <div style="font-family:var(--font-head); font-size:3rem; font-weight:700; color:var(--teal); line-height:1;"><span data-counter="50" data-suffix="">0</span>+</div>
+        <div style="color:var(--text-muted); margin-top:8px;">Export Destinations</div>
+      </div>
+      <div style="text-align:center;" class="animate-in">
+        <div style="font-family:var(--font-head); font-size:3rem; font-weight:700; color:var(--teal); line-height:1;"><span data-counter="20000" data-suffix="">0</span>m²</div>
+        <div style="color:var(--text-muted); margin-top:8px;">Factory Floor Space</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STORY -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap:64px;">
+      <div class="animate-in">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">A Factory Built on Innovation &amp; Quality</h2>
+        <p style="margin-bottom:20px;">NeoPower Energy Co., Ltd. is a vertically integrated manufacturer specializing in new-energy consumer and industrial electronics. We operate a 20,000 m² ISO 9001-certified manufacturing facility in the Longhua District of Shenzhen — one of the world's most advanced electronics manufacturing hubs.</p>
+        <p style="margin-bottom:20px;">Our vertically integrated production covers R&amp;D, component procurement, SMT assembly, battery cell integration, quality inspection, and export packaging — all under one roof. This gives us unmatched control over quality and lead times.</p>
+        <p>We serve importers, distributors, e-commerce aggregators, and retail chains across North America, Europe, the Middle East, Southeast Asia, and Australia. OEM and ODM partnerships are a cornerstone of our business.</p>
+      </div>
+      <div class="animate-in">
+        <!-- Factory Photos Grid -->
+        <div class="photo-grid">
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Factory Exterior<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            SMT Production Line<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            QC Lab<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Warehouse / Logistics<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            R&amp;D Center<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+          <div class="photo-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Showroom<br/><span style="font-size:0.7rem;color:var(--text-dim)">Add your photo here</span>
+          </div>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-dim); text-align:center; margin-top:12px;">📸 Replace placeholders with your actual factory and showroom photos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications" style="background:var(--navy-mid); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div style="text-align:center; max-width:540px; margin:0 auto 56px;">
+      <div class="section-label animate-in" style="justify-content:center;">Compliance</div>
+      <h2 class="section-title animate-in">Certifications &amp; Standards</h2>
+      <p class="animate-in">All our products are rigorously tested and certified to meet international standards for safety, EMC, and environmental compliance.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge">CE</div>
+        <div class="cert-card-info">
+          <h4>CE Mark</h4>
+          <p>European Conformity — indicates compliance with EU health, safety, and environmental protection standards. Required for all products sold in the European Economic Area.</p>
+        </div>
+      </div>
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge">RoHS</div>
+        <div class="cert-card-info">
+          <h4>RoHS Directive</h4>
+          <p>Restriction of Hazardous Substances — confirms our products contain no restricted heavy metals or chemicals. EU Directive 2011/65/EU compliant across all product lines.</p>
+        </div>
+      </div>
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge">FCC</div>
+        <div class="cert-card-info">
+          <h4>FCC Certification</h4>
+          <p>U.S. Federal Communications Commission approval for radio frequency emissions and electromagnetic interference. Required for all electronic devices sold in the USA.</p>
+        </div>
+      </div>
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge">UN38.3</div>
+        <div class="cert-card-info">
+          <h4>UN 38.3 Battery</h4>
+          <p>United Nations transport testing standard for lithium batteries. Ensures our battery products are safe for air, sea, and ground shipping worldwide.</p>
+        </div>
+      </div>
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge">ISO<br/>9001</div>
+        <div class="cert-card-info">
+          <h4>ISO 9001:2015</h4>
+          <p>International Quality Management System certification. Our entire manufacturing and supply chain operations are audited annually by a third-party registrar.</p>
+        </div>
+      </div>
+      <div class="cert-card animate-in">
+        <div class="cert-card-badge" style="font-size:0.65rem;">SRRC<br/>CCC</div>
+        <div class="cert-card-info">
+          <h4>SRRC &amp; CCC</h4>
+          <p>State Radio Regulation of China and China Compulsory Certificate. Covers drone RF transmissions and electrical equipment sold in the Chinese domestic market.</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 40px; padding: 28px; background: rgba(0,212,170,0.05); border: 1px dashed rgba(0,212,170,0.3); border-radius: var(--radius); text-align: center;">
+      <p style="margin:0; font-size:0.95rem;"><strong style="color:var(--text-white);">📄 Certificate Documents:</strong> Replace this box with scanned copies or official logos of your CE, RoHS, FCC, and other certificates. You can embed images with <code style="color:var(--teal);">&lt;img src="images/ce-certificate.jpg"&gt;</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY HISTORY / TIMELINE -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap:64px; align-items:start;">
+      <div class="animate-in">
+        <div class="section-label">Our Journey</div>
+        <h2 class="section-title">12 Years of Growth</h2>
+        <p style="margin-bottom:40px;">From a team of 8 engineers to a workforce of 450+ — here are the milestones that shaped NeoPower Energy.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2012</div>
+            <h4>Company Founded</h4>
+            <p>NeoPower Energy established in Shenzhen with 8 employees and a 500m² workshop, focused on LED flashlight manufacturing.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <h4>Solar Product Line Launched</h4>
+            <p>Expanded into solar-powered garden and street lights. Secured first export contract to European distributors.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2017</div>
+            <h4>ISO 9001 Certification</h4>
+            <p>Achieved ISO 9001:2015 quality management system certification. Moved to new 8,000m² facility.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <h4>Portable Power Station Launch</h4>
+            <p>Launched our flagship LiFePO₄ portable power station line. Annual revenue exceeded $15M for the first time.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <h4>Drone &amp; Electrical Division</h4>
+            <p>Added commercial UAV and air circuit breaker product lines. Expanded factory to current 20,000m².</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <h4>500+ Global B2B Clients</h4>
+            <p>Reached milestone of 500 active wholesale clients across 50+ countries. Launched dedicated OEM/ODM service division.</p>
+          </div>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div class="section-label">Core Values</div>
+        <h2 class="section-title">What Drives Us</h2>
+        <p style="margin-bottom:32px;">Our values define how we work with every partner, every day.</p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="value-card">
+            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h4>Uncompromising Quality</h4>
+            <p>Every batch undergoes multi-stage QC inspection. We never ship a product we wouldn't stake our reputation on.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <h4>Global Thinking</h4>
+            <p>We design our products for international markets from day one — certifications, voltage standards, and packaging included.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></div>
+            <h4>Sustainable Innovation</h4>
+            <p>Clean energy is not just our product category — it's our company philosophy. We invest 8% of revenue back into R&amp;D annually.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" style="background:var(--navy-mid); border-top:1px solid var(--border);">
+  <div class="container">
+    <div style="text-align:center; max-width:500px; margin:0 auto 56px;">
+      <div class="section-label animate-in" style="justify-content:center;">Leadership</div>
+      <h2 class="section-title animate-in">Meet the Team</h2>
+    </div>
+    <div class="grid-3">
+      <div class="team-card animate-in">
+        <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h4>David Chen</h4>
+        <div class="team-role">CEO &amp; Founder</div>
+        <p>15+ years in electronics manufacturing. Led NeoPower from startup to a globally recognized B2B energy brand.</p>
+      </div>
+      <div class="team-card animate-in">
+        <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h4>Sarah Li</h4>
+        <div class="team-role">Head of International Sales</div>
+        <p>Manages global B2B relationships across North America, Europe, and Southeast Asia. Fluent in 3 languages.</p>
+      </div>
+      <div class="team-card animate-in">
+        <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h4>Michael Zhang</h4>
+        <div class="team-role">Chief Technology Officer</div>
+        <p>PhD in Electrical Engineering. Leads R&amp;D for new battery and power management technologies.</p>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.85rem; color:var(--text-dim); margin-top:32px;">💡 Replace with your actual team names, photos, and roles</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <span>NEO<em>POWER</em></span>
+        </a>
+        <p>Leading B2B wholesale manufacturer of new-energy products. Factory direct, globally certified, and export-ready.</p>
+      </div>
+      <div class="footer-col"><h5>Products</h5><ul>
+        <li><a href="products.html#power-station">Power Stations</a></li>
+        <li><a href="products.html#solar-lights">Solar Lights</a></li>
+        <li><a href="products.html#flashlights">Flashlights</a></li>
+        <li><a href="products.html#drones">Drones</a></li>
+        <li><a href="products.html#circuit-breakers">Circuit Breakers</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#certifications">Certifications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>sales@neopowerenergy.com</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.45 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+86 755 1234 5678</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color:var(--text-dim);">© 2025 NeoPower Energy Co., Ltd. All rights reserved.</p>
+      <p style="color:var(--text-dim);">CE · RoHS · FCC · ISO 9001 Certified</p>
+    </div>
+  </div>
+</footer>
+
+<!-- QUOTE MODAL -->
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="section-label" style="margin-bottom:12px;">B2B Inquiry</div>
+    <h3>Request a Quote</h3>
+    <p>Fill in your requirements and our sales team will respond within 24 hours.</p>
+    <form data-ajax data-success="Quote request sent! We'll contact you within 24 hours.">
+      <div class="form-row">
+        <div class="form-group"><label>Full Name *</label><input type="text" placeholder="John Smith" required /></div>
+        <div class="form-group"><label>Company Name *</label><input type="text" placeholder="Your Company Ltd." required /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address *</label><input type="email" placeholder="john@company.com" required /></div>
+        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 555 000 0000" /></div>
+      </div>
+      <div class="form-group"><label>Product of Interest</label>
+        <select id="modalProduct"><option value="">— Select Product —</option><option>Portable Power Station</option><option>Solar Lights</option><option>Outdoor Flashlights</option><option>Commercial Drones</option><option>Air Circuit Breakers</option><option>Multiple Products</option></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Estimated Quantity</label><input type="text" placeholder="e.g. 500 units" /></div>
+        <div class="form-group"><label>Destination Country</label><input type="text" placeholder="e.g. United States" /></div>
+      </div>
+      <div class="form-group"><label>Additional Requirements</label><textarea placeholder="Describe your requirements..." rows="3"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">Submit Inquiry</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
