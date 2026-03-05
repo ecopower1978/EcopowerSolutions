@@ -21,11 +21,11 @@ neopower-site/
 
 ### 🏢 Company Information
 Replace all placeholder content throughout the pages:
-- **Company name**: NeoPower Energy Co., Ltd.
-- **Phone**: +86 755 1234 5678
-- **WhatsApp**: +86 138 0000 0000
-- **Email**: sales@neopowerenergy.com
-- **Address**: Building A, Longhua Innovation Park, Longhua District, Shenzhen 518109
+- **Company name**: CeoPower Solutions Co., Ltd.
+- **Phone**: +86 186 5797 5987
+- **WhatsApp**: +86 186 5797 5987
+- **Email**: sales@ceopowersolutions.cc
+- **Address**: Unit 8, 3rd Floor, 3rd Street, 83523#, Global Data Trade Center, Yiwu City, Zhejiang Province, China
 
 ### 📸 Photos to Add (images/ folder)
 - `factory-exterior.jpg` — Factory building exterior
